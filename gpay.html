@@ -4,11 +4,23 @@
 
 <script>
 var razorpay = new Razorpay({
-  key: 'rzp_test_ujyrjCmMoiIisD',
+  key: 'rzp_live_ePMZk1A48Q5MXF',
   currency:"INR",
 });
 document.getElementById('btn').addEventListener('click', function() {
-razorpay.isTezAvailable(success, error);
+
+  razorpay.checkPaymentAdapter('gpay', success, error)
+  .then(() => {
+    function success() {
+    alert('Tez Success');
+}
+  })
+  .catch(() => {
+    function error(e) {
+    alert(e.message);
+}
+  });
+  razorpay.isTezAvailable(success, error);
    
 function success() {
     alert('Tez Success');
